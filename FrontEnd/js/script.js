@@ -19,25 +19,23 @@ fetch(URL)
                 </figure>`;
     }
   })
-  .then(function(){
-        const liItem = document.querySelectorAll("#theFiltre li");
-      const imgItem = document.querySelectorAll("#gallery figure");
+  .then(function () {
+    const filtreBtn = document.querySelectorAll("#theFiltre li");
+    const works = document.querySelectorAll("#gallery figure");
 
-      liItem.forEach((li) => {
-        li.onclick = function () {
-          //Filter
-          const value = li.textContent;
-          imgItem.forEach((figure) => {
-            figure.style.display = "none";
-            if(figure.getAttribute("category") == value ||value == "All Menu"
-            ) {
-              figure.style.display = "block";
-            }
-          });
-        };
-      });
-  })
-
+    filtreBtn.forEach((li) => {
+      li.onclick = function () {
+        //Filter
+        const value = li.textContent;
+        works.forEach((figure) => {
+          figure.style.display = "none";
+          if (figure.getAttribute("category") == value || value == "Tous") {
+            figure.style.display = "block";
+          }
+        });
+      };
+    });
+  });
 
 // ********** */
 let btnFiltre = document.querySelectorAll(".filtre");
