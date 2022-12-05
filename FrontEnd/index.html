@@ -10,8 +10,9 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 
-	<!-- script -->
-	<script src="./js/script.js" defer></script>
+	<link rel="stylesheet" href="./assets/custom.css">
+
+	
 </head>
 <body>
 <header>
@@ -39,8 +40,16 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		<div class="gallery">
-			<figure>
+		<div>
+			<ul id="theFiltre">
+				<li class="filtre active" data-filter="all">Tous</li>
+				<li class="filtre" data-filter="Objets">Objets</li>
+				<li class="filtre" data-filter="Appartements">Appartements</li>
+				<li class="filtre" data-filter="Hotels & restaurants">Hôtels & restaurants</li>
+			</ul>
+		</div>
+		<div class="gallery" id="gallery">
+			<!-- <figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
 				<figcaption>Abajour Tahina</figcaption>
 			</figure>
@@ -83,7 +92,7 @@
 			<figure>
 				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
 				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
+			</figure> -->
 		</div>
 	</section>
 	<section id="contact">
@@ -108,5 +117,8 @@
 		</ul>
 	</nav>
 </footer>
+
+<!-- script -->
+<script src="./js/script.js" type="module" defer></script>
 </body>
 </html>

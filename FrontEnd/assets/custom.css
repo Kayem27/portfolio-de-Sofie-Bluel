@@ -1,0 +1,24 @@
+#theFiltre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+#theFiltre li {
+  border: 1px solid #1d6154;
+  border-radius: 60px;
+  padding: 7px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+#theFiltre li.active{
+    background-color: #1D6154;
+    color: #fff;
+}
+figure.hide{
+    display: none;
+}
+figure.active{
+    display: block;
+}
