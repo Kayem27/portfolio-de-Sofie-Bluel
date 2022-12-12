@@ -1,55 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/806de833f6.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
 
-	<link rel="stylesheet" href="./assets/custom.css">
+    <link rel="stylesheet" href="./assets/custom.css" />
+  </head>
+  <body>
+    <!-- Edition elements -->
+    <div class="editionElements" id="editionMode">
+      <span><i class="fa-regular fa-pen-to-square"></i>Mode édition</span>
+      <button id="editionBtn">Publier les changements</button>
+    </div>
 
-	
-</head>
-<body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div>
-			<ul id="theFiltre">
-				<li class="filtre active" data-filter="all">Tous</li>
-				<li class="filtre" data-filter="Objets">Objets</li>
-				<li class="filtre" data-filter="Appartements">Appartements</li>
-				<li class="filtre" data-filter="Hotels & restaurants">Hotels & restaurants</li>
-			</ul>
-		</div>
-		<div class="gallery" id="gallery">
-			<!-- <figure>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <li class="loginNav"><a href="./pages/login.html">login</a></li>
+          <li class="editionElements"><a href="#">Logout</a></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="./assets/images/sophie-bluel.png" alt="sophie-bluel" />
+          <figcaption class="editionElements">
+            <span class="edit"
+              ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
+            >
+          </figcaption>
+        </figure>
+        <article>
+          <span class="editionElements edit"
+            ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
+          >
+          <h2>Designer d'espace</h2>
+          <p>
+            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
+            de la conception à la livraison finale du chantier.
+          </p>
+          <p>
+            Chaque projet sera étudié en commun, de façon à mettre en valeur les
+            volumes, les matières et les couleurs dans le respect de l’esprit
+            des lieux et le choix adapté des matériaux. Le suivi du chantier
+            sera assuré dans le souci du détail, le respect du planning et du
+            budget.
+          </p>
+          <p>
+            En cas de besoin, une équipe pluridisciplinaire peut-être constituée
+            : architecte DPLG, décorateur(trice)
+          </p>
+        </article>
+      </section>
+      <section id="portfolio">
+        <h2>Mes Projets</h2>
+        <span class="editionElements edit"
+          ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
+        >
+        <div>
+          <ul id="theFiltre">
+            <li class="filtre active" categoryID="0">Tous</li>
+            <li class="filtre" categoryID="1">Objets</li>
+            <li class="filtre" categoryID="2">Appartements</li>
+            <li class="filtre" categoryID="3">Hotels & restaurants</li>
+          </ul>
+        </div>
+        <div class="gallery" id="gallery">
+          <!-- <figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
 				<figcaption>Abajour Tahina</figcaption>
 			</figure>
@@ -93,32 +129,33 @@
 				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
 				<figcaption>Hotel First Arte - New Delhi</figcaption>
 			</figure> -->
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
 
-<!-- script -->
-<script src="./js/script.js" type="module" defer></script>
-</body>
+    <!-- script -->
+    <script src="./js/script.js" type="module" defer></script>
+    <script src="./js/edition.js"></script>
+  </body>
 </html>

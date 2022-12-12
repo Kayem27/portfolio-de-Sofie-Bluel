@@ -26,11 +26,11 @@
     <main>
         <section id="login">
             <h2>Login</h2>
-            <form action="#" method="post">
+            <form action="#" method="get" id="loginForm">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
                 <input type="submit" value="Se connecter">
             </form>
             <span class="forgetPass">Mot de passe oublié</span>
@@ -40,4 +40,5 @@
         <span>Mentions légales</span>
     </footer>
   </body>
+  <script src="../js/login.js"></script>
 </html>

@@ -1,24 +1,26 @@
 const gallery = document.getElementById("gallery");
 const URL = "http://localhost:5678/api/works";
 
-// Récupération des données de l'API
-fetch(URL)
-  .then(function (res) {
-    if (res.ok) {
-      return res.json();
-    } else {
-      alert("La requete a échoué !");
-    }
-  })
-  .then(function (data) {
-    for (let projets of data) {
-      gallery.innerHTML += `
-                <figure class="item" category="${projets.category.name}">
+const template = function (projets) {
+  gallery.innerHTML += `
+                <figure class="item" category="${projets.category.id}">
                     <img src="${projets.imageUrl}" alt="${projets.title}">
                      <figcaption>${projets.title}</figcaption>
                 </figure>`;
+};
+
+// Récupération et affichage des projets
+fetch(URL)
+  .then((res) => res.json())
+  .then(function (data) {
+    // console.log(data);
+
+    // Affichage des projets
+    for (let projets of data) {
+      template(projets);
     }
   })
+
   .then(function () {
     const filtreBtn = document.querySelectorAll("#theFiltre li");
     const works = document.querySelectorAll("#gallery figure");
@@ -26,10 +28,11 @@ fetch(URL)
     filtreBtn.forEach((li) => {
       li.onclick = function () {
         //Filter
-        const value = li.textContent;
+        const value = li.getAttribute("categoryID");
+        console.log(value);
         works.forEach((figure) => {
           figure.style.display = "none";
-          if (figure.getAttribute("category") == value || value == "Tous") {
+          if (figure.getAttribute("category") === value || value === "0") {
             figure.style.display = "block";
           }
         });
@@ -41,7 +44,7 @@ fetch(URL)
 let btnFiltre = document.querySelectorAll(".filtre");
 let items = document.querySelectorAll(".item");
 
-console.log(items);
+// console.log(items);
 for (let i = 0; i < btnFiltre.length; i++) {
   btnFiltre[i].addEventListener("click", function () {
     for (let j = 0; j < btnFiltre.length; j++) {

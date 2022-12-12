@@ -1,3 +1,26 @@
+#editionMode{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+}
+#editionMode span{
+  margin-right: 10px;
+}
+#editionMode span i{
+  margin-right: 5px;
+}
+#editionMode button{
+  height: 38px;
+  border-radius: 60px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer ;
+}
+
 #theFiltre {
   display: flex;
   justify-content: center;
@@ -22,3 +45,24 @@ figure.hide{
 figure.active{
     display: block;
 }
+
+#introduction figure figcaption{
+  margin-left: 10%;
+  margin-top: 10px;
+}
+.edit i{
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#portfolio{
+  text-align: center;
+}
+#portfolio h2{
+  display: inline-block;
+  margin-right: 20px;
+}
+.editionElements{
+  visibility: hidden;
+}
+
