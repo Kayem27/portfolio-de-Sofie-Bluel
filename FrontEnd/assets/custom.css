@@ -65,4 +65,6 @@ figure.active{
 .editionElements{
   visibility: hidden;
 }
-
+#editionMode{
+  display: none;
+}

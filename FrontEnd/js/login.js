@@ -11,26 +11,30 @@ formulaire.addEventListener("submit", function (event) {
     email: email,
     password: password,
   };
-  if (!(email === "sophie.bluel@test.tld" && password === "S0phie")) {
-    // rest input value
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-  } else {
-    fetch("http://localhost:5678/api/users/login", {
-      method: "post",
-      body: JSON.stringify(userLogs),
-      headers: {
-        "content-Type": "application/json",
-      },
+
+  fetch("http://localhost:5678/api/users/login", {
+    method: "post",
+    body: JSON.stringify(userLogs),
+    headers: {
+      "content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then(function (res) {
+      if(res.token){
+        console.log(res);
+        window.localStorage.setItem("myUser", res.token);
+        document.location.href = "/";
+      } else if(res.message){
+        alert ("Cet utilisateur n'existe pas !")
+      } else {
+        alert("Mot de passe Incorrecte !")
+      }
     })
-      .then((response) => response.json())
-      .then(function (user) {
-        window.localStorage.setItem("token", user.token);
-      })
-      .then(function () {
-        email = "";
-        password = "";
-        document.location.href = "http://127.0.0.1:5500/";
-      });
-  }
+    .catch(function (err) {
+      email ="";
+      password = "";
+      console.log(err);
+      alert("Une erreur est survenue, veuillez réessayer ultérieurement !")
+    });
 });
