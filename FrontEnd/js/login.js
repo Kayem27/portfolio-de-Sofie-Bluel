@@ -28,7 +28,7 @@ formulaire.addEventListener("submit", function (event) {
       } else if(res.message){
         alert ("Cet utilisateur n'existe pas !")
       } else {
-        alert("Mot de passe Incorrecte !")
+        alert("Mot de passe Incorrecte !");
       }
     })
     .catch(function (err) {

@@ -1,9 +1,10 @@
 const gallery = document.getElementById("gallery");
+const editGallery = document.getElementById("editGallery");
 const WorksURL = "http://localhost:5678/api/works";
 const CategoryURL = "http://localhost:5678/api/categories";
 
 let items = document.querySelectorAll(".item");
-const category = document.getElementById("theFiltre");
+const theFiltre = document.getElementById("theFiltre");
 
 const template = function (projets) {
   gallery.innerHTML += `
@@ -13,13 +14,22 @@ const template = function (projets) {
                 </figure>`;
 };
 const categoryTemplate = function (categorie) {
-  category.innerHTML += `<li class="filtre" categoryID="${categorie.id}">${categorie.name}</li>`;
+  theFiltre.innerHTML += `<li class="filtre" categoryID="${categorie.id}">${categorie.name}</li>`;
+};
+const editGalleryTemplate = function (projets) {
+  editGallery.innerHTML += `
+      <figure>
+        <span class="deleteBtn"><i class="fa-solid fa-trash-can"></i></span>
+  <!--  <span><i class="fa-solid fa-arrows-up-down-left-right"></i></span> -->
+        <img src="${projets.imageUrl}" alt="${projets.title}">
+        <figcaption id ="editBtn">éditer</figcaption>
+      </figure>`;
 };
 // Les catégories
 fetch(CategoryURL)
   .then((response) => response.json())
   .then(function (categories) {
-    category.innerHTML += `<li class="filtre active" categoryID="0">Tous</li>`;
+    theFiltre.innerHTML += `<li class="filtre active" categoryID="0">Tous</li>`;
     for (let myCategory of categories) {
       categoryTemplate(myCategory);
     }
@@ -46,6 +56,7 @@ fetch(WorksURL)
     // Affichage des projets
     for (let projets of data) {
       template(projets);
+      editGalleryTemplate(projets);
     }
   })
 
@@ -73,4 +84,35 @@ fetch(WorksURL)
     alert("Une erreur est survenue, veuillez réessayer ultérieurement !");
   });
 
-// ********** */
+// -------------------------------------------
+//  Modal
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelectorAll(".close-button");
+const addImg = document.getElementById("addImg");
+const bigConteneur = document.querySelector(".bigConteneur");
+const editArrow = document.querySelector(".editArrow");
+
+// Flip
+addImg.addEventListener('click', function(){
+  bigConteneur.classList.toggle('flip')
+})
+ editArrow.addEventListener("click", function(){
+  bigConteneur.classList.toggle("flip")
+ })
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+trigger.addEventListener("click", toggleModal);
+closeButton.forEach((close) =>{
+  close.addEventListener("click", toggleModal);
+});
+window.addEventListener("click", windowOnClick);

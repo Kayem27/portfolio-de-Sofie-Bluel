@@ -1,4 +1,4 @@
-#editionMode{
+#editionMode {
   width: 100%;
   height: 60px;
   display: flex;
@@ -7,18 +7,18 @@
   color: white;
   background-color: black;
 }
-#editionMode span{
+#editionMode span {
   margin-right: 10px;
 }
-#editionMode span i{
+#editionMode span i {
   margin-right: 5px;
 }
-#editionMode button{
+#editionMode button {
   height: 38px;
   border-radius: 60px;
   padding: 10px;
   font-size: 14px;
-  cursor: pointer ;
+  cursor: pointer;
 }
 
 #theFiltre {
@@ -35,36 +35,143 @@
   margin: 5px;
   cursor: pointer;
 }
-#theFiltre li.active{
-    background-color: #1D6154;
-    color: #fff;
+#theFiltre li.active {
+  background-color: #1d6154;
+  color: #fff;
 }
-figure.hide{
-    display: none;
+figure.hide {
+  display: none;
 }
-figure.active{
-    display: block;
+figure.active {
+  display: block;
 }
 
-#introduction figure figcaption{
+#introduction figure figcaption {
   margin-left: 10%;
   margin-top: 10px;
 }
-.edit i{
+.edit i {
   margin-right: 10px;
   cursor: pointer;
 }
 
-#portfolio{
+#portfolio {
   text-align: center;
 }
-#portfolio h2{
+#portfolio h2 {
   display: inline-block;
   margin-right: 20px;
 }
-.editionElements{
+.editionElements {
   visibility: hidden;
 }
-#editionMode{
+#editionMode {
   display: none;
+}
+
+/* --------------------------------- */
+/* Modal */
+.bigConteneur{
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+.trigger {
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+    
+}
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+#editGallery {
+  max-height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 40px;
+  border-bottom: 1px solid black;
+}
+#editGallery figure {
+  width: 22%;
+  position: relative;
+  text-align: left;
+}
+#editGallery figure figcaption {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#editGallery figure img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+.face_1{
+  display: block;
+}
+.face_1 h3{
+  margin-top: 30px;
+  font-size: 26px;
+}
+.face_2{
+  top: 2%;
+  left: 20%;
+  transform: rotateY(180deg);
+}
+.flip{
+  transform: rotateY(180deg);
+}
+.deleteBtn{
+  position: absolute;
+  right: 1%;
+  top: 2%;
+  cursor: pointer;
+}
+.editArrow{
+  float: left;
+  cursor: pointer;
 }
