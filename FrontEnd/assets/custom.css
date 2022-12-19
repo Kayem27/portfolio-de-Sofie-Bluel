@@ -71,7 +71,7 @@ figure.active {
 
 /* --------------------------------- */
 /* Modal */
-.bigConteneur{
+.bigConteneur {
   position: relative;
   height: 100%;
   transform-style: preserve-3d;
@@ -100,11 +100,10 @@ figure.active {
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 24rem;
+  width: 28rem;
   border-radius: 0.5rem;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-    
 }
 
 .close-button {
@@ -150,28 +149,46 @@ figure.active {
   height: 60%;
   object-fit: cover;
 }
-.face_1{
+.face_1 {
   display: block;
 }
-.face_1 h3{
+.face_1 h3, .face_2 h3 {
   margin-top: 30px;
   font-size: 26px;
 }
-.face_2{
+.face_2 {
   top: 2%;
   left: 20%;
   transform: rotateY(180deg);
 }
-.flip{
+.flip {
   transform: rotateY(180deg);
 }
-.deleteBtn{
+.deleteBtn {
   position: absolute;
   right: 1%;
   top: 2%;
   cursor: pointer;
 }
-.editArrow{
+.editArrow {
   float: left;
+  cursor: pointer;
+}
+#addImg {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 237px;
+  height: 36px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  background: #1d6154;
+  border-radius: 60px;
+}
+.editPhoto span{
+  color: #D65353;
   cursor: pointer;
 }

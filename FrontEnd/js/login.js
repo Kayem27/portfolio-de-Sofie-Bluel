@@ -13,7 +13,7 @@ formulaire.addEventListener("submit", function (event) {
   };
 
   fetch("http://localhost:5678/api/users/login", {
-    method: "post",
+    method: "POST",
     body: JSON.stringify(userLogs),
     headers: {
       "content-Type": "application/json",
@@ -21,20 +21,21 @@ formulaire.addEventListener("submit", function (event) {
   })
     .then((response) => response.json())
     .then(function (res) {
-      if(res.token){
-        console.log(res);
-        window.localStorage.setItem("myUser", res.token);
+      if (res.token) {
+        // console.log(res);
+        window.localStorage.setItem("token", res.token);
+        window.localStorage.setItem("userId", res.userId);
         document.location.href = "/";
-      } else if(res.message){
-        alert ("Cet utilisateur n'existe pas !")
+      } else if (res.message) {
+        alert("Cet utilisateur n'existe pas !");
       } else {
         alert("Mot de passe Incorrecte !");
       }
     })
     .catch(function (err) {
-      email ="";
+      email = "";
       password = "";
       console.log(err);
-      alert("Une erreur est survenue, veuillez réessayer ultérieurement !")
+      alert("Une erreur est survenue, veuillez réessayer ultérieurement !");
     });
 });

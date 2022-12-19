@@ -79,7 +79,7 @@
             <!-- Face 1 -->
             <div class="modal-content face_1">
               <span class="close-button">×</span>
-              <div>
+              <div class="editPhoto">
                 <h3>Galerie photo</h3>
                 <div id="editGallery">
                   <!-- -- -->
@@ -98,11 +98,11 @@
                 <h3>Ajout photo</h3>
                 <form action="#" method="post" id="addWorkForm">
                   <label for="image">image</label>
-                  <input type="file" name="image" id="image" />
+                  <input type="file" name="image" id="image" required />
                   <label for="title">Titre</label>
-                  <input type="text" name="title" id="title" />
+                  <input type="text" name="title" id="title" required />
                   <label for="category">Catégorie</label>
-                  <select name="category" id="category">
+                  <select name="category" id="category" required>
                     <option value="Objets">Objets</option>
                     <option value="Appartements">Appartements</option>
                     <option value="Hotels & restaurants">Hotels & restaurants</option>
@@ -152,5 +152,6 @@
     <!-- script -->
     <script src="./js/script.js" type="module" defer></script>
     <script src="./js/edition.js"></script>
+    <script src="./js/modal.js"></script>
   </body>
 </html>
