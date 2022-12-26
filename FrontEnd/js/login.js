@@ -23,8 +23,8 @@ formulaire.addEventListener("submit", function (event) {
     .then(function (res) {
       if (res.token) {
         // console.log(res);
-        window.localStorage.setItem("token", res.token);
-        window.localStorage.setItem("userId", res.userId);
+        window.localStorage.setItem("myUser", JSON.stringify(res));
+        // window.localStorage.setItem("userId", res.userId);
         document.location.href = "/";
       } else if (res.message) {
         alert("Cet utilisateur n'existe pas !");

@@ -2,6 +2,7 @@ const gallery = document.getElementById("gallery");
 const editGallery = document.getElementById("editGallery");
 const WorksURL = "http://localhost:5678/api/works";
 const CategoryURL = "http://localhost:5678/api/categories";
+const categorySelect = document.getElementById("category");
 
 let items = document.querySelectorAll(".item");
 const theFiltre = document.getElementById("theFiltre");
@@ -18,7 +19,7 @@ const categoryTemplate = function (categorie) {
 };
 const editGalleryTemplate = function (projets) {
   editGallery.innerHTML += `
-      <figure>
+      <figure id ="${projets.id}">
         <span class="deleteBtn"><i class="fa-solid fa-trash-can"></i></span>
   <!--  <span><i class="fa-solid fa-arrows-up-down-left-right"></i></span> -->
         <img src="${projets.imageUrl}" alt="${projets.title}">
@@ -32,8 +33,12 @@ fetch(CategoryURL)
     theFiltre.innerHTML += `<li class="filtre active" categoryID="0">Tous</li>`;
     for (let myCategory of categories) {
       categoryTemplate(myCategory);
+
+      // Les catégories dans le formulaire d'ajout de projet
+      categorySelect.innerHTML += `<option value="${myCategory.id}">${myCategory.name}</option>`;
     }
   })
+
   // Changement de couleur ( btn active )
   .then(function () {
     let btnFiltre = document.querySelectorAll(".filtre");
@@ -59,6 +64,20 @@ fetch(WorksURL)
       editGalleryTemplate(projets);
     }
   })
+  // Suppression
+  .then(function () {
+    let deleteBtn = document.querySelectorAll(".deleteBtn");
+
+    deleteBtn.forEach((e) => {
+      e.onclick = function () {
+        console.log(e);
+        console.log("click !");
+        fetch("http://localhost:5678/api/works/" + id).then((response) =>
+          console.log(response)
+        );
+      };
+    });
+  })
 
   // Le fonction de filtres
   .then(function () {
@@ -83,4 +102,3 @@ fetch(WorksURL)
     console.log(error);
     alert("Une erreur est survenue, veuillez réessayer ultérieurement !");
   });
-

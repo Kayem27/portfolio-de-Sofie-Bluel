@@ -1,12 +1,12 @@
 let editionElements = document.querySelectorAll(".editionElements");
 let loginNav = document.querySelector(".loginNav");
-let token = window.localStorage.getItem("token");
-let userId = window.localStorage.getItem("userId");
+let categorySelect = document.getElementById("category");
+let myUser = JSON.parse(localStorage.getItem("myUser"));
+
 const logoutBtn = document.getElementById("logout");
 const editionMode = document.getElementById("editionMode");
 
-
-if (token != undefined && token != "" && token != null) {
+if (myUser.token != undefined && myUser.token != "" && myUser.token != null) {
   editionElements.forEach(function (elements) {
     elements.style.visibility = "visible";
   });
@@ -28,34 +28,34 @@ const addWorkForm = document.getElementById("addWorkForm");
 addWorkForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  let newImage = document.getElementById("image").value;
+  let newImage = document.getElementById("image").files[0];
   let newTitle = document.getElementById("title").value;
-  let newCategory = document.getElementById("category").value;
+  let newCategory = categorySelect.options[categorySelect.selectedIndex].value;
 
   let newWork = new FormData(addWorkForm);
-  newWork.append("image", JSON.stringify(newImage));
+  newWork.append("image", newImage);
   newWork.append("title", newTitle);
   newWork.append("category", newCategory);
-  
-  // const newProjets = {
-  //   image: newImage,
-  //   title: newTitle,
-  //   category: newCategory,
-  // };
-  console.log(newWork.get("image"));
-  console.log(newWork.get("title"));
-  console.log(newWork.get("category"));
-  console.log(`Bearer ${token}`);
 
   fetch("http://localhost:5678/api/works/", {
     method: "POST",
     headers: {
       "accept": "application/json",
-      "Content-Type": "multipart/form-data",
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${myUser.token}`,
     },
     body: newWork,
   })
     .then((response) => console.log(response))
     .catch((err) => console.log(err));
 });
+
+// Delete
+// let deleteBtn = document.querySelectorAll(".deleteBtn");
+
+// deleteBtn.forEach((e) => {
+//   e.onclick = function() {
+//     console.log("click !");
+//     fetch("http://localhost:5678/api/works/" + id)
+//     .then((response) => console.log(response))
+//   }
+// })
