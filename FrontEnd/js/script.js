@@ -19,8 +19,8 @@ const categoryTemplate = function (categorie) {
 };
 const editGalleryTemplate = function (projets) {
   editGallery.innerHTML += `
-      <figure id ="${projets.id}">
-        <span class="deleteBtn"><i class="fa-solid fa-trash-can"></i></span>
+      <figure>
+        <span id ="${projets.id}" class="deleteBtn"><i class="fa-solid fa-trash-can"></i></span>
   <!--  <span><i class="fa-solid fa-arrows-up-down-left-right"></i></span> -->
         <img src="${projets.imageUrl}" alt="${projets.title}">
         <figcaption id ="editBtn">éditer</figcaption>
@@ -38,7 +38,6 @@ fetch(CategoryURL)
       categorySelect.innerHTML += `<option value="${myCategory.id}">${myCategory.name}</option>`;
     }
   })
-
   // Changement de couleur ( btn active )
   .then(function () {
     let btnFiltre = document.querySelectorAll(".filtre");
@@ -64,21 +63,6 @@ fetch(WorksURL)
       editGalleryTemplate(projets);
     }
   })
-  // Suppression
-  .then(function () {
-    let deleteBtn = document.querySelectorAll(".deleteBtn");
-
-    deleteBtn.forEach((e) => {
-      e.onclick = function () {
-        console.log(e);
-        console.log("click !");
-        fetch("http://localhost:5678/api/works/" + id).then((response) =>
-          console.log(response)
-        );
-      };
-    });
-  })
-
   // Le fonction de filtres
   .then(function () {
     const filtreBtn = document.querySelectorAll("#theFiltre li");
@@ -86,15 +70,29 @@ fetch(WorksURL)
 
     filtreBtn.forEach((li) => {
       li.onclick = function () {
-        //Filter
         const value = li.getAttribute("categoryID");
-        // console.log(value);
         works.forEach((figure) => {
           figure.style.display = "none";
           if (figure.getAttribute("category") === value || value === "0") {
             figure.style.display = "block";
           }
         });
+      };
+    });
+  })
+  // Suppression d'un projet
+  .then(function () {
+    let deleteBtn = document.querySelectorAll(".deleteBtn");
+    deleteBtn.forEach((e) => {
+      e.onclick = function () {
+        if (confirm("êtes-vous sûr de vouloir supprimer ce projet ?")) {
+          let id = e.getAttribute("id");
+          fetch("http://localhost:5678/api/works/" + id, {
+            method: "DELETE",
+          })
+          .then((response) => console.log(response)
+          )
+        }
       };
     });
   })
