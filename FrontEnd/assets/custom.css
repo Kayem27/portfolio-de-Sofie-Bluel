@@ -100,7 +100,7 @@ figure.active {
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 28rem;
+  width: 30rem;
   border-radius: 0.5rem;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -141,18 +141,21 @@ figure.active {
   text-align: left;
 }
 #editGallery figure figcaption {
-  text-decoration: underline;
   cursor: pointer;
 }
 #editGallery figure img {
   width: 100%;
-  height: 60%;
+  height: 70%;
   object-fit: cover;
 }
 .face_1 {
   display: block;
 }
-.face_1 h3, .face_2 h3 {
+.editPhoto{
+  margin: 40px;
+}
+.face_1 h3,
+.face_2 h3 {
   margin-top: 30px;
   font-size: 26px;
 }
@@ -188,7 +191,15 @@ figure.active {
   background: #1d6154;
   border-radius: 60px;
 }
-.editPhoto span{
-  color: #D65353;
+.deleteAll {
+  color: #d65353;
   cursor: pointer;
+}
+.deleteBtn {
+  padding: 3px;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  border-radius: 3px;
 }

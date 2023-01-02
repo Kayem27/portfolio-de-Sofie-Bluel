@@ -15,7 +15,7 @@ function resetTemplate() {
 const template = function (projets) {
   gallery.innerHTML += `
                 <figure class="item" category="${projets.category.id}">
-                    <img src="${projets.imageUrl}" alt="${projets.title}">
+                    <img crossorigin="anonymous" src="${projets.imageUrl}" alt="${projets.title}">
                      <figcaption>${projets.title}</figcaption>
                 </figure>`;
 };
@@ -27,7 +27,7 @@ const editGalleryTemplate = function (projets) {
       <figure>
         <span data-id ="${projets.id}" class="deleteBtn"><i class="fa-solid fa-trash-can"></i></span>
   <!--  <span><i class="fa-solid fa-arrows-up-down-left-right"></i></span> -->
-        <img src="${projets.imageUrl}" alt="${projets.title}">
+        <img crossorigin="anonymous" src="${projets.imageUrl}" alt="${projets.title}">
         <figcaption id ="editBtn">éditer</figcaption>
       </figure>`;
 };
@@ -166,7 +166,7 @@ if (myUser.token) {
 } else {
   console.log("Vous n'etes pas connectés");
 }
-// ---------------------------------------
+
 // Déconnexion
 logoutBtn.addEventListener("click", function () {
   if (confirm("êtes-vous sûr de vouloir vous déconnecter ?")) {

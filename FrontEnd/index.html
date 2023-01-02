@@ -85,7 +85,7 @@
                   <!-- Contenenu dynamique -->
                 </div>
                 <button id="addImg">Ajouter une photo</button>
-                <span>Supprimer la galerie</span>
+                <span class="deleteAll">Supprimer la galerie</span>
               </div>
             </div>
             <!-- Face 2 -->
@@ -98,7 +98,13 @@
                 <h3>Ajout photo</h3>
                 <form action="#" method="post" id="addWorkForm">
                   <label for="image">image</label>
-                  <input type="file" name="image" id="image" required />
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/"
+                    required
+                  />
                   <label for="title">Titre</label>
                   <input type="text" name="title" id="title" required />
                   <label for="category">Catégorie</label>
@@ -106,14 +112,16 @@
                     <option value=""></option>
                     <!-- Catégories en dynamique -->
                   </select>
-                  <input type="submit" value="Valider">
+                  <input type="submit" value="Valider" />
                 </form>
               </div>
             </div>
           </div>
         </div>
         <!-- -------- -->
-        <span class="editionElements edit trigger"><i class="fa-regular fa-pen-to-square"></i>Modifier</span>
+        <span class="editionElements edit trigger"
+          ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
+        >
         <div>
           <ul id="theFiltre">
             <!-- Filtre dynamique -->
