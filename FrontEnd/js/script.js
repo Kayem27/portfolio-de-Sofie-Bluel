@@ -5,10 +5,13 @@ let myUser = JSON.parse(localStorage.getItem("myUser"));
 let items = document.querySelectorAll(".item");
 const theFiltre = document.getElementById("theFiltre");
 
-function reset() {
+
+// reseinitialiser les templates
+function resetTemplate() {
   gallery.innerHTML = "";
   editGallery.innerHTML = "";
 }
+// Template pour l'affichages des données
 const template = function (projets) {
   gallery.innerHTML += `
                 <figure class="item" category="${projets.category.id}">
@@ -28,22 +31,21 @@ const editGalleryTemplate = function (projets) {
         <figcaption id ="editBtn">éditer</figcaption>
       </figure>`;
 };
-// Les catégories
+
+// Récupération et affichage des catégories
 fetch("http://localhost:5678/api/categories")
   .then((response) => response.json())
   .then(function (categories) {
     theFiltre.innerHTML += `<li class="filtre active" categoryID="0">Tous</li>`;
     for (let myCategory of categories) {
       categoryTemplate(myCategory);
-
       // Les catégories dans le formulaire d'ajout de projet
       categorySelect.innerHTML += `<option value="${myCategory.id}">${myCategory.name}</option>`;
     }
   })
-  // Changement de couleur ( btn active )
+  // Changement de couleur des boutons ( btn active )
   .then(function () {
     let btnFiltre = document.querySelectorAll(".filtre");
-    // console.log(items);
     for (let i = 0; i < btnFiltre.length; i++) {
       btnFiltre[i].addEventListener("click", function () {
         for (let j = 0; j < btnFiltre.length; j++) {
@@ -55,7 +57,8 @@ fetch("http://localhost:5678/api/categories")
   })
   .catch((err) => console.error(error));
 
-// Récupération et affichage des projets
+//--------------------------------------------
+// Render pour le
 function render() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
@@ -66,7 +69,7 @@ function render() {
         editGalleryTemplate(projets);
       }
     })
-    // Le fonction de filtres
+    // Filtrage des projets
     .then(function () {
       const filtreBtn = document.querySelectorAll("#theFiltre li");
       const works = document.querySelectorAll("#gallery figure");
@@ -95,11 +98,14 @@ function render() {
               headers: {
                 Authorization: "Bearer " + myUser.token,
               },
-            }).then((response) => console.log(response))
-              .then(function(){
-                reset();
-                render();
+            })
+              .then(function(response){
+                if(response.ok){
+                  resetTemplate();
+                  render();
+                }
               })
+              .catch((err) => console.error(err))
           }
         };
       });
@@ -111,7 +117,6 @@ function render() {
 }
 render();
 
-// -----------------------------------------------
 // Ajout de nouveaux projets
 const addWorkForm = document.getElementById("addWorkForm");
 const modal = document.querySelector(".modal");
@@ -134,12 +139,38 @@ addWorkForm.addEventListener("submit", function (event) {
     },
     body: newWork,
   })
-    .then((response) => console.log(response))
-    .then(function () {
-      addWorkForm.reset(); // réinitialise le formulaire
-      modal.classList.remove("show-modal");
-      reset();
-      render();
+    .then(function (response) {
+      if(response.ok){
+        addWorkForm.reset(); // réinitialise le formulaire
+        modal.classList.remove("show-modal"); // Fait disparaitre la modale
+        resetTemplate();
+        render();
+      }
     })
     .catch((err) => console.log(err));
+});
+
+// ---------------------------------------
+let editionElements = document.querySelectorAll(".editionElements");
+let loginNav = document.querySelector(".loginNav");
+const logoutBtn = document.getElementById("logout");
+const editionMode = document.getElementById("editionMode");
+
+// Affichage des éléments d'édition
+if (myUser.token) {
+  editionElements.forEach(function (elements) {
+    elements.style.visibility = "visible";
+  });
+  loginNav.style.display = "none";
+  editionMode.style.display = "flex";
+} else {
+  console.log("Vous n'etes pas connectés");
+}
+// ---------------------------------------
+// Déconnexion
+logoutBtn.addEventListener("click", function () {
+  if (confirm("êtes-vous sûr de vouloir vous déconnecter ?")) {
+    window.localStorage.removeItem("myUser");
+    location.reload(); 
+  }
 });

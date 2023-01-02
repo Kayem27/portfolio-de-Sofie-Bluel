@@ -1,4 +1,3 @@
-// -------------------------------------------
 //  Modal
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
