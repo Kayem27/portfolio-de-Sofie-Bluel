@@ -2,23 +2,15 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Sophie Bluel - Architecte d'intérieur</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/806de833f6.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <meta name="description" content="" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/806de833f6.js" crossorigin="anonymous" defer></script>
+    <meta name="description" content="la description du site de la Shopie" />
     <link rel="stylesheet" href="./assets/style.css" />
-
     <link rel="stylesheet" href="./assets/custom.css" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
   </head>
   <body>
     <!-- Edition elements -->
@@ -26,7 +18,6 @@
       <span><i class="fa-regular fa-pen-to-square"></i>Mode édition</span>
       <button id="editionBtn">Publier les changements</button>
     </div>
-
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
@@ -44,15 +35,11 @@
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="sophie-bluel" />
           <figcaption class="editionElements">
-            <span class="edit"
-              ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
-            >
+            <span class="edit"><i class="fa-regular fa-pen-to-square"></i>Modifier</span>
           </figcaption>
         </figure>
         <article>
-          <span class="editionElements edit"
-            ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
-          >
+          <span class="editionElements edit"><i class="fa-regular fa-pen-to-square"></i>Modifier</span>
           <h2>Designer d'espace</h2>
           <p>
             Je raconte votre histoire, je valorise vos idées. Je vous accompagne
@@ -97,14 +84,15 @@
               <div>
                 <h3>Ajout photo</h3>
                 <form action="#" method="post" id="addWorkForm">
-                  <label for="image">image</label>
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept="image/"
-                    required
-                  />
+                  <div class="figure">
+                    <img id="myImg" src="./assets/images/image.png" alt="votre image"/>
+                    <div id="figcaption" class="figcaption">
+                      <i class="fa-solid fa-plus"></i>
+                      <label class="labelImg" for="image">Ajouter photo</label>
+                    </div>
+                    <span id="jpg">jpg, png : 4mo max</span>
+                  </div>
+                  <input type="file" name="image" id="image" accept="image/" />
                   <label for="title">Titre</label>
                   <input type="text" name="title" id="title" required />
                   <label for="category">Catégorie</label>
@@ -119,9 +107,7 @@
           </div>
         </div>
         <!-- -------- -->
-        <span class="editionElements edit trigger"
-          ><i class="fa-regular fa-pen-to-square"></i>Modifier</span
-        >
+        <span class="editionElements edit trigger"><i class="fa-regular fa-pen-to-square"></i>Modifier</span>
         <div>
           <ul id="theFiltre">
             <!-- Filtre dynamique -->
@@ -153,7 +139,7 @@
       </nav>
     </footer>
     <!-- script -->
-    <script src="./js/script.js" type="module" defer></script>
+    <script src="./js/script.js" type="module"></script>
     <script src="./js/modal.js"></script>
   </body>
 </html>

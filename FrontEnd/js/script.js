@@ -1,10 +1,9 @@
 const gallery = document.getElementById("gallery");
 const editGallery = document.getElementById("editGallery");
 const categorySelect = document.getElementById("category");
-let myUser = JSON.parse(localStorage.getItem("myUser"));
+let myUser = localStorage.getItem("myUser") ? JSON.parse(localStorage.getItem("myUser")) : "";
 let items = document.querySelectorAll(".item");
 const theFiltre = document.getElementById("theFiltre");
-
 
 // reseinitialiser les templates
 function resetTemplate() {
@@ -31,7 +30,6 @@ const editGalleryTemplate = function (projets) {
         <figcaption id ="editBtn">éditer</figcaption>
       </figure>`;
 };
-
 // Récupération et affichage des catégories
 fetch("http://localhost:5678/api/categories")
   .then((response) => response.json())
@@ -56,9 +54,8 @@ fetch("http://localhost:5678/api/categories")
     }
   })
   .catch((err) => console.error(error));
-
 //--------------------------------------------
-// Render pour le
+// Fonction render; permet de refraire un appel d'API
 function render() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
@@ -69,7 +66,7 @@ function render() {
         editGalleryTemplate(projets);
       }
     })
-    // Filtrage des projets
+    // Fonction Filtre des projets
     .then(function () {
       const filtreBtn = document.querySelectorAll("#theFiltre li");
       const works = document.querySelectorAll("#gallery figure");
@@ -134,17 +131,23 @@ addWorkForm.addEventListener("submit", function (event) {
   fetch("http://localhost:5678/api/works/", {
     method: "POST",
     headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + myUser.token,
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + myUser.token,
     },
     body: newWork,
   })
+
     .then(function (response) {
-      if(response.ok){
+      if(response.status != 500){
         addWorkForm.reset(); // réinitialise le formulaire
         modal.classList.remove("show-modal"); // Fait disparaitre la modale
         resetTemplate();
         render();
+        myImg.src = "./assets/images/image.png"; // remet l'image de fond de la modal
+        figcaption.classList.remove("opacity"); // fait apparaitre le bouton submit aprés envoie
+        jpg.classList.remove("opacity"); // fait apparaitre le span aprés submit
+      } else {
+        alert("veuillez choisir une image pour votre projet !")
       }
     })
     .catch((err) => console.log(err));
@@ -174,3 +177,4 @@ logoutBtn.addEventListener("click", function () {
     location.reload(); 
   }
 });
+
